@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content %}
+    <div class="bg-light d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow p-4 " style="width: 350px;">
+            <h4 class="text-center mb-4">Cloud Data Storage Mini</h4>
+            <form method="POST">
+                <label>
+                    <input type="email" class="form-control mb-3" name="email" placeholder="Email">
+                </label>
+                <label>
+                    <input type="password" class="form-control mb-3" name="password" placeholder="Password">
+                </label>
+                <button class="btn btn-primary w-100">Login</button>
+            </form>
+            <p class="text-center mt-3">
+                <a href="/sign_up">Create account</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Upload
+uploads/
+
+# Config
+instance/
+config.py
+
+# OS
+.DS_Store
+
+.idea/
