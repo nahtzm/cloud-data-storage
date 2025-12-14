@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block title %}Billing{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            {% for key, plan in plans.items() %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm
+                {% if key == current_plan %} border-primary {% endif %}">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{ plan.name }}</h4>
+
+                            <h5 class="my-3">
+                                {% if plan.price == 0 %}
+                                    Free
+                                {% else %}
+                                    {{ plan.price }} VND / month
+                                {% endif %}
+                            </h5>
+
+                            <p>
+                                Storage:
+                                <strong>{{ plan.storage_limit}}KB</strong>
+                            </p>
+
+                            {% if key == current_plan %}
+                                <button class="btn btn-secondary w-100" disabled>
+                                    ✔ Đang sử dụng
+                                </button>
+                            {% else %}
+                                <a href="{{ url_for('main.upgrade', plan=key) }}"
+                                   class="btn btn-primary w-100">
+                                    Choose
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -9,7 +9,6 @@ uploads/
 
 # Config
 instance/
-config.py
 
 # OS
 .DS_Store

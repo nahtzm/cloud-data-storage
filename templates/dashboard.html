@@ -10,6 +10,36 @@
 
         <h3 class="mb-4">My Cloud Storage</h3>
 
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Plan: <span class="badge bg-primary">{{ plan.name }}</span>
+                </h5>
+
+                <p class="mb-2">
+                    {{ used_storage }}KB / {{ max_storage }}KB
+                </p>
+
+                <div class="progress mb-3" style="height: 20px;">
+                    <div class="progress-bar bg-success"
+                         role="progressbar"
+                         style="width: {{ percent }}%;">
+                        {{ percent }}%
+                    </div>
+                </div>
+
+                <a href="{{ url_for('main.billing') }}" class="btn btn-warning">
+                    🚀 Upgrade Plan
+                </a>
+                {% if percent >= 100 %}
+                    <button class="btn btn-danger" disabled>
+                        Storage Full
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+
         <!-- Upload form -->
         <form action="/upload" enctype="multipart/form-data" method="POST" class="mb-4">
             <input class="form-control mb-2" type="file" name="file" required multiple>
