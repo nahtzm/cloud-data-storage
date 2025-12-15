@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
 from sqlalchemy import func
 
@@ -12,7 +12,7 @@ main_route = Blueprint('main', __name__)
 def home():
     return render_template("home.html")
 
-@main_route.route('/dashboard', methods=['GET', 'POST'])
+@main_route.route('/dashboard')
 @login_required
 def dashboard():
     used_storage = db.session.query(
@@ -39,12 +39,10 @@ def dashboard():
 def upgrade(plan):
     current_user.plan = plan
     db.session.commit()
-    #
     flash("Plan upgraded successfully!", "success")
     return redirect(url_for("main.dashboard"))
 
-@main_route.route('/billing', methods=['GET', 'POST'])
+@main_route.route('/billing')
 @login_required
 def billing():
-
     return render_template("billing.html", plans= PLANS, current_plan=current_user.plan)

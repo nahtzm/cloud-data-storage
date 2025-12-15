@@ -21,7 +21,6 @@ def upload_file():
     ).filter(
         File.user_id == current_user.id
     ).scalar()
-
     plan = PLANS[current_user.plan]
     max_storage = plan.storage_limit
     for file in files:
